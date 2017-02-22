@@ -1,3 +1,8 @@
+/**
+ * Author	: RBH | Lanse web
+ *
+ * Copyright © 2010-2017, all right reserved.
+ */
 <?php
 header('Content-type: application/json');
 $con = mysqli_connect("************","***********","****************","*************");
