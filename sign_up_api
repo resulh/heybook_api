@@ -1,0 +1,29 @@
+<?php
+header('Content-type: application/json');
+$con = mysqli_connect("************","***********","****************","*************");
+
+if (mysqli_connect_errno()) {
+    echo json_encode(array("success" => false, "message" => mysqli_connect_error(), "sqlerrno" => mysqli_connect_errno()));
+    exit;
+}
+
+$field1 = mysqli_real_escape_string($con, $_REQUEST["user_id"]);
+$field2 = mysqli_real_escape_string($con, $_REQUEST["user_title"]);
+$field3 = mysqli_real_escape_string($con, $_REQUEST["mail"]);
+$field4 = mysqli_real_escape_string($con, $_REQUEST["password"]);
+$field5 = mysqli_real_escape_string($con, $_REQUEST["subscribe"]);
+$field6 = mysqli_real_escape_string($con, $_REQUEST["photo"]);
+
+$sql = "INSERT INTO users (user_id, user_title, mail, password, subscribe, photo) VALUES ('3', '{$field2}', '{$field3}', '{$field4}', '1', 'users/1.jpg')";
+
+if (!mysqli_query($con, $sql)) {
+    $response = array("success" => false, "message" => mysqli_error($con), "sqlerrno" => mysqli_errno($con), "sqlstate" => mysqli_sqlstate($con));
+} else {
+    $response = array("success" => true);
+}
+
+echo json_encode($response);
+
+mysqli_close($con);
+
+?>
